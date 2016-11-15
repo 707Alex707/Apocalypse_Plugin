@@ -1,0 +1,6 @@
+# Ignores Everything
+*
+
+#But
+!.gitignore
+!src
