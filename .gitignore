@@ -3,4 +3,4 @@
 
 #But
 !.gitignore
-!src/main.java
+!/src/*
