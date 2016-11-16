@@ -1,6 +1,5 @@
-#Files to Ignore
-Apocalypse_Plugin.iml
-spigot-1.10.2-R0.1-SNAPSHOT.jar
-spigot-api-1.10.2-R0.1-SNAPSHOT.jar
-/out/
-/.idea/
+#Ignore Everything
+*
+!/src/plugin.yml
+!/src/group/wilson/apocalypse/main.java
+!.gitignore

@@ -2,3 +2,4 @@ name: Apocalypse
 version: 1
 author: Group_1
 main: group.wilson.apocalypse.main
+commands:
