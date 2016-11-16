@@ -3,4 +3,6 @@
 
 #But
 !.gitignore
+!/src/plugin.yml
 !/src/*
+
