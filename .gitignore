@@ -1,6 +1,5 @@
 #Ignore Everything
-*
+/*
 !/src/plugin.yml
-!/src/group/wilson/apocalypse/main.java
 !.gitignore
-!/src/group/wilson/apocalypse/ListenerMob.java
+!/src/
