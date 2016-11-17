@@ -15,6 +15,8 @@ import java.io.FileReader;
  */
 public class ListenerMob implements Listener {
 
+    public int kills;
+
     @EventHandler
     //Runs on Mob Death
     public void mobkill(final EntityDeathEvent event) throws FileNotFoundException {
@@ -23,10 +25,11 @@ public class ListenerMob implements Listener {
         //If player kills a monster this fires
         if (event.getEntity() instanceof Monster)
         {
-            BufferedReader in = new BufferedReader(new FileReader("kills.txt"));
-            //Need to get the text from the txt first
-            int kills = 0;
-            new Scoreboard(kills);
+            this.kills++;
+
+                Player p = null;
+                p = p.getPlayer();
+                p.sendMessage("You have killed a mob! You have: " + this.kills + " Kills!");
 
         }
     }
