@@ -18,6 +18,11 @@ public class main extends JavaPlugin {
             Logger logger = Logger.getLogger("Minecraft");
             logger.info(pdfFile.getName() + " plugin has been enabled  (Version " + pdfFile.getVersion() + ")");
 
+            //Passes events to Listener class
+            getServer().getPluginManager().registerEvents(new ListenerMob(), this);
+
+
+
         }
         @Override
         public void onDisable() {
