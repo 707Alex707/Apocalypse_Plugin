@@ -1,37 +1,58 @@
 package group.wilson.apocalypse;
 
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
+import org.bukkit.Bukkit;
+import org.bukkit.Instrument;
+import org.bukkit.Note;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.FileConfigurationOptions;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
+import java.awt.TextComponent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+
+import static org.bukkit.Bukkit.getServer;
+import static sun.audio.AudioPlayer.player;
 
 /**
  * Created by Alexandre on 2016-11-16.
  */
 public class ListenerMob implements Listener {
 
+    //Kills
     public int kills;
 
-    @EventHandler
-    //Runs on Mob Death
-    public void mobkill(final EntityDeathEvent event) throws FileNotFoundException {
+    main configGetter;
 
-
-        //If player kills a monster this fires
-        if (event.getEntity() instanceof Monster)
-        {
-            this.kills++;
-
-                Player p = null;
-                p = p.getPlayer();
-                p.sendMessage("You have killed a mob! You have: " + this.kills + " Kills!");
-
-        }
+    //Passes events to Listener class
+    public ListenerMob(main plugin)
+    {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        this.configGetter = plugin;
     }
 
+    @EventHandler
+    public void KillZombie(EntityDeathEvent z)
+    {
+        Entity deadEntity = z.getEntity();
+        Entity killer = z.getEntity().getKiller();
+        if (((killer instanceof Player)) && ((deadEntity instanceof Zombie)))
+        {
+            Player player = (Player)killer;
+
+            int Killcount = this.configGetter.getConfig().getInt("Zombie kills");
+            this.configGetter.getConfig().set("Zombie kills", Integer.valueOf(Killcount + 1));
+
+            player.sendMessage(ChatColor.GREEN + "Zombie killed");
+        }
+    }
 }

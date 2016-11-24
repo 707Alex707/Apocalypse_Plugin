@@ -1,5 +1,9 @@
 package group.wilson.apocalypse;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
@@ -19,8 +23,7 @@ public class main extends JavaPlugin {
             logger.info(pdfFile.getName() + " plugin has been enabled  (Version " + pdfFile.getVersion() + ")");
 
             //Passes events to Listener class
-            getServer().getPluginManager().registerEvents(new ListenerMob(), this);
-
+            new ListenerMob(this);
 
 
         }
