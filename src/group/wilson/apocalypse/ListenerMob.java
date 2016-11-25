@@ -30,6 +30,7 @@ public class ListenerMob implements Listener {
 
     //Kills
     public int kills;
+    public int Reward1 = 50;
 
     main configGetter;
 
@@ -52,7 +53,14 @@ public class ListenerMob implements Listener {
             int Killcount = this.configGetter.getConfig().getInt("Zombie kills");
             this.configGetter.getConfig().set("Zombie kills", Integer.valueOf(Killcount + 1));
 
-            player.sendMessage(ChatColor.GREEN + "Zombie killed");
+            player.sendMessage(ChatColor.GREEN + "+1 kills! You have " + Killcount + " kills ");
+            if (Killcount == Reward1){
+
+                player.sendMessage(ChatColor.GOLD + "You have gotten 50 kills! You have recieved 2 extra hearts!");
+                player.setMaxHealth(24);
+
+            }
         }
+
     }
 }

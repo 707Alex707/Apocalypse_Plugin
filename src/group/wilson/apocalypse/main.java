@@ -8,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 /**
@@ -19,6 +21,14 @@ public class main extends JavaPlugin {
         public void onEnable() {
             //Fired when the server enables the plugin
 
+            //Generates config file if does not exist
+            File file = new File(getDataFolder(), "apocalypse.yml");
+            if (!file.exists()) {
+                getLogger().info("apocalypse.yml not found, creating!");
+                saveDefaultConfig();
+            } else {
+                getLogger().info("apocalypse.yml found, loading!");
+            }
             //Reads and writes information from plugin yml to console
             PluginDescriptionFile pdfFile = getDescription();
             Logger logger = Logger.getLogger("Minecraft");
@@ -27,6 +37,10 @@ public class main extends JavaPlugin {
             //Passes events to Listener class
             new ListenerMob(this);
 
+            //Adds default stored kills value for zombies
+            getConfig().addDefault("Zombie kills", Integer.valueOf(0));
+            getConfig().options().copyDefaults(true);
+            saveConfig();
 
         }
         @Override
@@ -37,6 +51,8 @@ public class main extends JavaPlugin {
             PluginDescriptionFile pdfFile = getDescription();
             Logger logger = Logger.getLogger("Minecraft");
             logger.info(pdfFile.getName() + " has been disabled  (Version." + pdfFile.getVersion() + ")");
+            //Saves kills so that they can be read later
+            saveConfig();
         }
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
