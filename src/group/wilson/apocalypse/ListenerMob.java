@@ -37,7 +37,7 @@ public class ListenerMob implements Listener {
     //Passes events to Listener class
     public ListenerMob(main plugin)
     {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+
         this.configGetter = plugin;
     }
 
@@ -50,9 +50,9 @@ public class ListenerMob implements Listener {
         {
             Player player = (Player)killer;
 
-            int Killcount = this.configGetter.getConfig().getInt("Zombie kills");
-            this.configGetter.getConfig().set("Zombie kills", Integer.valueOf(Killcount + 1));
-            Killcount = this.configGetter.getConfig().getInt("Zombie kills");
+            int Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+            this.configGetter.getConfig().set(player.getName() + " Zombie kills", Integer.valueOf(Killcount + 1));
+            Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
             player.sendMessage(ChatColor.GREEN + "+1 kills! You have " + Killcount + " kills ");
 
             //

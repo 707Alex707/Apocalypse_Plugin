@@ -35,7 +35,8 @@ public class main extends JavaPlugin {
             logger.info(pdfFile.getName() + " plugin has been enabled  (Version " + pdfFile.getVersion() + ")");
 
             //Passes events to Listener class
-            new ListenerMob(this);
+            getServer().getPluginManager().registerEvents(new ListenerMob(this),this);
+
 
             //Adds default stored kills value for zombies
             getConfig().addDefault("Zombie kills", Integer.valueOf(0));
