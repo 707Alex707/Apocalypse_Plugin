@@ -22,12 +22,12 @@ public class main extends JavaPlugin {
             //Fired when the server enables the plugin
 
             //Generates config file if does not exist
-            File file = new File(getDataFolder(), "apocalypse.yml");
+            File file = new File(getDataFolder(), "config.yml");
             if (!file.exists()) {
-                getLogger().info("apocalypse.yml not found, creating!");
+                getLogger().info("config.yml not found, creating!");
                 saveDefaultConfig();
             } else {
-                getLogger().info("apocalypse.yml found, loading!");
+                getLogger().info("config.yml found, loading!");
             }
             //Reads and writes information from plugin yml to console
             PluginDescriptionFile pdfFile = getDescription();
