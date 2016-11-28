@@ -13,7 +13,7 @@ import java.io.File;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 /**
- * Created by Alexandre on 2016-11-15.
+ * Created by Alexandre,Spencer,Julian on 2016-11-15.
  */
 public class main extends JavaPlugin {
 
@@ -37,10 +37,6 @@ public class main extends JavaPlugin {
             //Passes events to Listener class
             new ListenerMob(this);
 
-            //Adds default stored kills value for zombies
-            getConfig().addDefault("Zombie kills", Integer.valueOf(0));
-            getConfig().options().copyDefaults(true);
-            saveConfig();
 
         }
         @Override
