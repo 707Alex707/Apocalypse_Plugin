@@ -38,11 +38,6 @@ public class main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new ListenerMob(this),this);
 
 
-            //Adds default stored kills value for zombies
-            getConfig().addDefault("Zombie kills", Integer.valueOf(0));
-            getConfig().options().copyDefaults(true);
-            saveConfig();
-
         }
         @Override
         public void onDisable() {
