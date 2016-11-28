@@ -14,8 +14,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.FileConfigurationOptions;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.awt.TextComponent;
 import java.io.BufferedReader;
@@ -33,14 +31,13 @@ public class ListenerMob implements Listener {
     //Kills
     public int kills;
     public int Reward1 = 50;
-    public int Reward2 = 250;
 
     main configGetter;
 
     //Passes events to Listener class
     public ListenerMob(main plugin)
     {
-        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+
         this.configGetter = plugin;
     }
 
@@ -53,10 +50,9 @@ public class ListenerMob implements Listener {
         {
             Player player = (Player)killer;
 
-            //Gets and saved each players kills (YES IT SAVED THEM SEPERATELY YAY) -Spencer
-            int Killcount = this.configGetter.getConfig().getInt("Zombie kills " + player.getName());
-            this.configGetter.getConfig().set("Zombie kills " + player.getName(), Integer.valueOf(Killcount + 1));
-            Killcount = this.configGetter.getConfig().getInt("Zombie kills " + player.getName());
+            int Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+            this.configGetter.getConfig().set(player.getName() + " Zombie kills", Integer.valueOf(Killcount + 1));
+            Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
             player.sendMessage(ChatColor.GREEN + "+1 kills! You have " + Killcount + " kills ");
 
             //
@@ -66,13 +62,7 @@ public class ListenerMob implements Listener {
                 player.setMaxHealth(24);
 
             }
-            if (Killcount == Reward2){
-                player.sendMessage(ChatColor.GOLD + "You have gotten 250 kills! You have recieved a Perm speed boost and another heart!");
-                player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1), true);
-            }
         }
 
     }
-
-
 }
