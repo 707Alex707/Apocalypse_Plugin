@@ -32,6 +32,7 @@ public class ListenerMob implements Listener {
 
     //Kills
     public int kills;
+    public int Boss1 = 75;
     public int Reward1 = 50;
     public int Reward2 = 250;
     main configGetter;
@@ -48,15 +49,24 @@ public class ListenerMob implements Listener {
     {
         Entity deadEntity = z.getEntity();
         Entity killer = z.getEntity().getKiller();
+        int bonus = (int) (Math.random() * 10);
         if (((killer instanceof Player)) && ((deadEntity instanceof Zombie)))
         {
             Player player = (Player)killer;
+            int Killcount;
 
-            int Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
-            this.configGetter.getConfig().set(player.getName() + " Zombie kills", Integer.valueOf(Killcount + 1));
-            Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
-            player.sendMessage(ChatColor.GREEN + "+1 kills! You have " + Killcount + " kills ");
-
+            if(bonus == 3){
+                Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+                this.configGetter.getConfig().set(player.getName() + " Zombie kills", Integer.valueOf(Killcount + 2));
+                Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+                player.sendMessage(ChatColor.GOLD + "BONUS! " + ChatColor.GREEN + "+2 kills! "  + Killcount + " kills ");
+            }
+            else {
+                Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+                this.configGetter.getConfig().set(player.getName() + " Zombie kills", Integer.valueOf(Killcount + 1));
+                Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+                player.sendMessage(ChatColor.GREEN + "+1 kills! You have " + Killcount + " kills ");
+            }
             //
             if (Killcount == Reward1){
 
@@ -64,7 +74,11 @@ public class ListenerMob implements Listener {
                 player.setMaxHealth(24);
 
             }
+            if (Killcount == Boss1){
+
+            }
             if (Killcount == Reward2){
+                player.setMaxHealth(26);
                 player.sendMessage(ChatColor.GOLD + "You have gotten 250 kills! You have recieved a Perm speed boost and another heart!");
                 player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1), true);
             }
