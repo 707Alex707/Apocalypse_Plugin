@@ -13,7 +13,7 @@ import java.io.File;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 /**
- * Created by Alexandre on 2016-11-15.
+ * Created by Alexandre,Spencer on 2016-11-15.
  */
 public class main extends JavaPlugin {
 
