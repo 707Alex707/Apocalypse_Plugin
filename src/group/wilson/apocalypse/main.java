@@ -37,7 +37,7 @@ public class main extends JavaPlugin {
 
             //Passes events to Listener class
             getServer().getPluginManager().registerEvents(new ListenerMob(this),this);
-            getServer().getPluginManager().registerEvents((Listener) new ChestRewards(this),this);
+            getServer().getPluginManager().registerEvents(new ChestRewards(this),this);
 
 
         }
