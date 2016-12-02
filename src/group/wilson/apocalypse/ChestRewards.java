@@ -26,9 +26,6 @@ public class ChestRewards implements Listener {
         this.configGetter = plugin;
     }
 
-    public ChestRewards() {
-
-    }
 
     @EventHandler
 
