@@ -39,6 +39,9 @@ public class main extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new ListenerMob(this),this);
             getServer().getPluginManager().registerEvents(new ChestRewards(this),this);
 
+            //Passes Death Event
+            getServer().getPluginManager().registerEvents(new RespawnEvent(this),this);
+
 
         }
         @Override
