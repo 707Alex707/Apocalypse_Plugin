@@ -2,11 +2,13 @@ package group.wilson.apocalypse;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.block.Chest;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -29,26 +31,27 @@ public class ChestRewards implements Listener {
 
 
     @EventHandler
-
-
-
     public void catchChestOpen(PlayerInteractEvent event) {
 
+        Entity p = event.getPlayer();
+        Player player = (Player) p;
 
+        if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.PHYSICAL || event.getAction() == Action.LEFT_CLICK_BLOCK){
+            // TODO: 2016-12-06 Nothing
+        }
 
-        if (event.getClickedBlock().getType() == (Material.CHEST)) {
-            Entity p = event.getPlayer();
-            Player player = (Player) p;
+        if (event.getClickedBlock().getType() == Material.CHEST) {
+
 
             event.getClickedBlock().setType(Material.AIR);
 
             event.setCancelled(true);
 
-            int rando = (int) (Math.random() * 6);
+            int rando = (int) (Math.random() * 10);
 
 
             //---------------------------------------------------------------------------------
-            if (rando <= 1) {
+            if (rando == 1) {
                 ItemStack Axe = new ItemStack(Material.DIAMOND_AXE, 1);
                 ItemMeta meta = Axe.getItemMeta();
                 List<String> lores = new ArrayList<String>();
@@ -64,7 +67,7 @@ public class ChestRewards implements Listener {
                 player.sendMessage(ChatColor.GOLD + "You opened a" + ChatColor.AQUA + " RARE " + ChatColor.GOLD + "loot chest!");
             }
             //---------------------------------------------------------------------------------
-            if (rando <= 2) {
+            if (rando > 1) {
                 ItemStack IronSword = new ItemStack(Material.IRON_SWORD, 1);
                 ItemMeta meta2 = IronSword.getItemMeta();
                 List<String> lores2 = new ArrayList<String>();
@@ -82,9 +85,6 @@ public class ChestRewards implements Listener {
 
 
             
-        }
-        else{
-            //// TODO: 2016-12-05  nothing 
         }
     }
 }

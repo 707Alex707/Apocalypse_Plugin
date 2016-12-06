@@ -41,7 +41,7 @@ public class main extends JavaPlugin {
 
             //Passes Death Event
             getServer().getPluginManager().registerEvents(new RespawnEvent(this),this);
-
+            getServer().getPluginManager().registerEvents(new ZombieSpawnEvent(this),this);
 
         }
         @Override
