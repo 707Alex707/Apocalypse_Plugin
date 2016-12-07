@@ -46,11 +46,25 @@ public class ChestRewards implements Listener {
 
             event.setCancelled(true);
 
-            int rando = (int) (Math.random() * 10);
+            int rando = (int) (Math.random() * 50);
 
 
+            if (rando < 3) {
+                ItemStack DSword = new ItemStack(Material.DIAMOND_SWORD, 1);
+                ItemMeta meta = DSword.getItemMeta();
+                List<String> lores = new ArrayList<String>();
+                lores.add(ChatColor.DARK_PURPLE + "The Legendary Sword Of A King");
+
+                meta.setDisplayName(ChatColor.GOLD + "Excalibur");
+                meta.addEnchant(Enchantment.DAMAGE_ALL, 10, true);
+                meta.addEnchant(Enchantment.DURABILITY, 5, true);
+                meta.setLore(lores);
+                DSword.setItemMeta(meta);
+                player.getInventory().addItem(DSword);
+                player.sendMessage(ChatColor.GOLD + "You opened a" + ChatColor.LIGHT_PURPLE + " LEGENDARY " + ChatColor.GOLD + "loot chest!");
+            }
             //---------------------------------------------------------------------------------
-            if (rando == 1) {
+            if (rando < 15 && rando > 3) {
                 ItemStack Axe = new ItemStack(Material.DIAMOND_AXE, 1);
                 ItemMeta meta = Axe.getItemMeta();
                 List<String> lores = new ArrayList<String>();
@@ -61,12 +75,12 @@ public class ChestRewards implements Listener {
                 meta.addEnchant(Enchantment.DURABILITY, 2, true);
                 meta.setLore(lores);
                 Axe.setItemMeta(meta);
-                Axe.setDurability((short) 1000);
+                Axe.setDurability((short) 500);
                 player.getInventory().addItem(Axe);
                 player.sendMessage(ChatColor.GOLD + "You opened a" + ChatColor.AQUA + " RARE " + ChatColor.GOLD + "loot chest!");
             }
             //---------------------------------------------------------------------------------
-            if (rando > 1) {
+            if (rando > 15) {
                 ItemStack IronSword = new ItemStack(Material.IRON_SWORD, 1);
                 ItemMeta meta2 = IronSword.getItemMeta();
                 List<String> lores2 = new ArrayList<String>();
@@ -76,7 +90,6 @@ public class ChestRewards implements Listener {
                 meta2.addEnchant(Enchantment.DURABILITY, 3, true);
                 meta2.setLore(lores2);
                 IronSword.setItemMeta(meta2);
-                IronSword.setDurability((short) 250);
                 player.getInventory().addItem(IronSword);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
             }
