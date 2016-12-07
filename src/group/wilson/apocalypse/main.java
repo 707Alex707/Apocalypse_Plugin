@@ -13,10 +13,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
+import org.bukkit.scheduler.BukkitScheduler;
+
 /**
  * Created by Alexandre,Spencer on 2016-11-15.
  */
 public class main extends JavaPlugin {
+
+
 
         @Override
         public void onEnable() {
@@ -55,8 +59,23 @@ public class main extends JavaPlugin {
             //Saves kills so that they can be read later
             saveConfig();
         }
+
+
+
+
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
+        if (cmd.getName().equalsIgnoreCase("crate")) {
+            Bukkit.broadcastMessage("");
+            BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+            scheduler.scheduleSyncDelayedTask(this, new Runnable() {
+                @Override
+                public void run() {
+                    Bukkit.broadcastMessage("Stopped");
+                }
+            }, 100);
+
+        }
         if ((cmd.getName().equalsIgnoreCase("kills")) && ((sender instanceof Player)))
         {
             Player player = (Player)sender;
