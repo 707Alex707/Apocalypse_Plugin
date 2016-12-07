@@ -61,7 +61,7 @@ public class ChestRewards implements Listener {
                 meta.addEnchant(Enchantment.DURABILITY, 2, true);
                 meta.setLore(lores);
                 Axe.setItemMeta(meta);
-                Axe.setDurability((short) 800);
+                Axe.setDurability((short) 1000);
                 player.getInventory().addItem(Axe);
                 player.sendMessage(ChatColor.GOLD + "You opened a" + ChatColor.AQUA + " RARE " + ChatColor.GOLD + "loot chest!");
             }
@@ -76,7 +76,7 @@ public class ChestRewards implements Listener {
                 meta2.addEnchant(Enchantment.DURABILITY, 3, true);
                 meta2.setLore(lores2);
                 IronSword.setItemMeta(meta2);
-                IronSword.setDurability((short) 800);
+                IronSword.setDurability((short) 250);
                 player.getInventory().addItem(IronSword);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
             }
