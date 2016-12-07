@@ -36,11 +36,10 @@ public class ChestRewards implements Listener {
         Entity p = event.getPlayer();
         Player player = (Player) p;
 
-        if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.PHYSICAL || event.getAction() == Action.LEFT_CLICK_BLOCK){
-            // TODO: 2016-12-06 Nothing
-        }
-
-        if (event.getClickedBlock().getType() == Material.CHEST) {
+        //Very important check which allows no error to occur if you do anything other then open a chest as well as checks to see if you have openned one.
+        if ((event.getAction() == Action.RIGHT_CLICK_BLOCK ||
+                event.getAction() == Action.LEFT_CLICK_BLOCK) &&
+                event.getClickedBlock().getType() == Material.CHEST){
 
 
             event.getClickedBlock().setType(Material.AIR);
