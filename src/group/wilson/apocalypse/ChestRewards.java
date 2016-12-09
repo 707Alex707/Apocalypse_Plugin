@@ -46,7 +46,7 @@ public class ChestRewards implements Listener {
 
             event.setCancelled(true);
 
-            int rando = (int) (Math.random() * 50);
+            int rando = (int) (Math.random() * 120);
 
 
             if (rando < 3) {
@@ -80,7 +80,7 @@ public class ChestRewards implements Listener {
                 player.sendMessage(ChatColor.GOLD + "You opened a" + ChatColor.AQUA + " RARE " + ChatColor.GOLD + "loot chest!");
             }
             //---------------------------------------------------------------------------------
-            if (rando > 15) {
+            if (rando > 15 && rando < 30) {
                 ItemStack IronSword = new ItemStack(Material.IRON_SWORD, 1);
                 ItemMeta meta2 = IronSword.getItemMeta();
                 List<String> lores2 = new ArrayList<String>();
@@ -91,10 +91,26 @@ public class ChestRewards implements Listener {
                 meta2.setLore(lores2);
                 IronSword.setItemMeta(meta2);
                 player.getInventory().addItem(IronSword);
+                player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
+            }
+            //---------------------------------------------------------------------------------
+            if (rando > 30 && rando < 60) {
+                ItemStack[] items = {new ItemStack(Material.COOKED_FISH, 9), new ItemStack(Material.STONE_SWORD, 1), new ItemStack((Material.LEATHER_CHESTPLATE))};
+                player.getInventory().addItem(items);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
             }
             //---------------------------------------------------------------------------------
-
+            if (rando > 60 && rando < 90) {
+                ItemStack[] items = {new ItemStack(Material.COOKED_BEEF, 5), new ItemStack(Material.LEATHER_BOOTS, 1), new ItemStack((Material.LEATHER_HELMET))};
+                player.getInventory().addItem(items);
+                player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
+            }
+            //---------------------------------------------------------------------------------
+            if (rando > 90) {
+                ItemStack[] items = {new ItemStack(Material.COOKED_CHICKEN, 7), new ItemStack(Material.CHAINMAIL_LEGGINGS, 1), new ItemStack((Material.WOOD_SWORD))};
+                player.getInventory().addItem(items);
+                player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
+            }
 
             
         }
