@@ -1,16 +1,20 @@
 package group.wilson.apocalypse;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -19,7 +23,7 @@ import org.bukkit.scheduler.BukkitScheduler;
  * Created by Alexandre,Spencer on 2016-11-15.
  */
 public class main extends JavaPlugin {
-
+    int a = 0;
 
 
         @Override
@@ -65,15 +69,21 @@ public class main extends JavaPlugin {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
-        if (cmd.getName().equalsIgnoreCase("crate")) {
-            Bukkit.broadcastMessage("");
+        if (cmd.getName().equalsIgnoreCase("chest") && a == 0) {
+
+            Player player = (Player)sender;
+            Bukkit.broadcastMessage("You have recieved a chest!");
+            ItemStack chest = new ItemStack(Material.CHEST,1);
+            player.getInventory().addItem(chest);
+            a = 1;
             BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
             scheduler.scheduleSyncDelayedTask(this, new Runnable() {
                 @Override
                 public void run() {
-                    Bukkit.broadcastMessage("Stopped");
+                    Bukkit.broadcastMessage("You can use /chest again!");
+                    a = 0;
                 }
-            }, 100);
+            }, 600);
 
         }
         if ((cmd.getName().equalsIgnoreCase("kills")) && ((sender instanceof Player)))
