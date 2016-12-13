@@ -46,7 +46,7 @@ public class ChestRewards implements Listener {
 
             event.setCancelled(true);
 
-            int rando = (int) (Math.random() * 120);
+            int rando = (int) (Math.random() * 210);
 
 
             if (rando < 3) {
@@ -71,7 +71,7 @@ public class ChestRewards implements Listener {
                 lores.add(ChatColor.DARK_PURPLE + "The axe of a long lost survivor");
 
                 meta.setDisplayName(ChatColor.DARK_RED + "Survivor Axe");
-                meta.addEnchant(Enchantment.DAMAGE_ALL, 2, true);
+                meta.addEnchant(Enchantment.DAMAGE_ALL, 4, true);
                 meta.addEnchant(Enchantment.DURABILITY, 2, true);
                 meta.setLore(lores);
                 Axe.setItemMeta(meta);
@@ -101,7 +101,7 @@ public class ChestRewards implements Listener {
             }
             //---------------------------------------------------------------------------------
             if (rando > 60 && rando < 90) {
-                ItemStack[] items = {new ItemStack(Material.COOKED_BEEF, 5), new ItemStack(Material.LEATHER_BOOTS, 1), new ItemStack((Material.LEATHER_HELMET))};
+                ItemStack[] items = {new ItemStack(Material.COOKED_BEEF, 5), new ItemStack(Material.LEATHER_BOOTS, 1), new ItemStack((Material.CHAINMAIL_HELMET))};
                 player.getInventory().addItem(items);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
             }
@@ -111,8 +111,67 @@ public class ChestRewards implements Listener {
                 player.getInventory().addItem(items);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
             }
+            if (rando > 120 && rando < 135) {
+                ItemStack IronHelm = new ItemStack(Material.IRON_HELMET, 1);
+                ItemMeta meta2 = IronHelm.getItemMeta();
+                List<String> lores2 = new ArrayList<String>();
+                lores2.add(ChatColor.DARK_PURPLE + "A reliable iron helmet");
 
-            
+                meta2.setDisplayName(ChatColor.DARK_RED + "Reliable Iron Helmet");
+                meta2.addEnchant(Enchantment.DURABILITY, 3, true);
+                meta2.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+                meta2.setLore(lores2);
+                IronHelm.setItemMeta(meta2);
+                player.getInventory().addItem(IronHelm);
+                player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
+            }
+            if (rando > 135 && rando < 150) {
+                ItemStack IronHelm = new ItemStack(Material.IRON_CHESTPLATE, 1);
+                ItemMeta meta2 = IronHelm.getItemMeta();
+                List<String> lores2 = new ArrayList<String>();
+                lores2.add(ChatColor.DARK_PURPLE + "A reliable iron chestplate");
+
+                meta2.setDisplayName(ChatColor.DARK_RED + "Reliable Iron Chestplate");
+                meta2.addEnchant(Enchantment.DURABILITY, 3, true);
+                meta2.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+                meta2.setLore(lores2);
+                IronHelm.setItemMeta(meta2);
+                player.getInventory().addItem(IronHelm);
+                player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
+            }
+            if (rando > 150 && rando < 165) {
+                ItemStack IronHelm = new ItemStack(Material.IRON_LEGGINGS, 1);
+                ItemMeta meta2 = IronHelm.getItemMeta();
+                List<String> lores2 = new ArrayList<String>();
+                lores2.add(ChatColor.DARK_PURPLE + "A reliable pair of iron pants");
+
+                meta2.setDisplayName(ChatColor.DARK_RED + "Reliable Iron Leggings");
+                meta2.addEnchant(Enchantment.DURABILITY, 3, true);
+                meta2.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+                meta2.setLore(lores2);
+                IronHelm.setItemMeta(meta2);
+                player.getInventory().addItem(IronHelm);
+                player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
+            }
+            if (rando > 165 && rando < 180) {
+                ItemStack IronHelm = new ItemStack(Material.IRON_BOOTS, 1);
+                ItemMeta meta2 = IronHelm.getItemMeta();
+                List<String> lores2 = new ArrayList<String>();
+                lores2.add(ChatColor.DARK_PURPLE + "A reliable pair of iron boots");
+
+                meta2.setDisplayName(ChatColor.DARK_RED + "Reliable Iron Boots");
+                meta2.addEnchant(Enchantment.DURABILITY, 3, true);
+                meta2.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+                meta2.setLore(lores2);
+                IronHelm.setItemMeta(meta2);
+                player.getInventory().addItem(IronHelm);
+                player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
+            }
+            if (rando > 180 && rando < 210) {
+                ItemStack[] items = {new ItemStack(Material.COOKED_FISH, 9), new ItemStack(Material.STONE_SWORD, 1), new ItemStack((Material.CHAINMAIL_CHESTPLATE))};
+                player.getInventory().addItem(items);
+                player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
+            }
         }
     }
 }
