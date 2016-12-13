@@ -3,3 +3,6 @@ version: 1.0
 author: Group_1
 main: group.wilson.apocalypse.main
 commands:
+  chest:
+    description: gives the user a chest
+    usage: /chest can only be used every minute!

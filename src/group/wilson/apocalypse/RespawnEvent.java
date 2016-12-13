@@ -35,7 +35,7 @@ public class RespawnEvent implements Listener {
 
         //Gets what player died
         final Player p = spawn.getPlayer();
-       
+
 
         //Gives player Leather armor and gold chestplate + diamond sword on death
         p.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS, 1));
