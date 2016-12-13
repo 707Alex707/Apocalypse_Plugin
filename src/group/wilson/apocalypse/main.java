@@ -72,11 +72,6 @@ public class main extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         {
-            if ((cmd.getName().equalsIgnoreCase("chest")) && sender instanceof Player && a != 0) {
-
-                Bukkit.broadcastMessage("You will have to wait to use this command again!");
-
-            }
             if ((cmd.getName().equalsIgnoreCase("chest")) && sender instanceof Player && a == 0) {
 
                 Player player = (Player) sender;
