@@ -38,12 +38,8 @@ public class RespawnEvent implements Listener {
 
 
         //Gives player Leather armor and gold chestplate + diamond sword on death
-        p.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS, 1));
-        p.getInventory().setLeggings(new ItemStack(Material.LEATHER_LEGGINGS, 1));
-        p.getInventory().setChestplate(new ItemStack(Material.GOLD_CHESTPLATE, 1));
-        p.getInventory().setHelmet(new ItemStack(Material.LEATHER_HELMET, 1));
-        p.getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD, 1));
-
+        p.getInventory().setBoots(new ItemStack(Material.WOOD_SWORD, 1));
+        p.getInventory().setLeggings(new ItemStack(Material.BREAD, 4));
 
     }
 }
