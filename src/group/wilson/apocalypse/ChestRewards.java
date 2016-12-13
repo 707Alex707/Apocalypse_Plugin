@@ -106,7 +106,7 @@ public class ChestRewards implements Listener {
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
             }
             //---------------------------------------------------------------------------------
-            if (rando > 90) {
+            if (rando > 90 && rando < 120) {
                 ItemStack[] items = {new ItemStack(Material.COOKED_CHICKEN, 7), new ItemStack(Material.CHAINMAIL_LEGGINGS, 1), new ItemStack((Material.WOOD_SWORD))};
                 player.getInventory().addItem(items);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
