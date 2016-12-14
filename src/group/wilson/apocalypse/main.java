@@ -76,7 +76,7 @@ public class main extends JavaPlugin {
             if ((cmd.getName().equalsIgnoreCase("chest")) && sender instanceof Player && a == 0) {
 
                 Player player = (Player) sender;
-                Bukkit.broadcastMessage("You have recieved a chest!");
+                Bukkit.broadcastMessage(ChatColor.GOLD + "You have recieved a chest!");
                 ItemStack chest = new ItemStack(Material.CHEST, 1);
                 player.getInventory().addItem(chest);
                 a = 1;
@@ -84,7 +84,7 @@ public class main extends JavaPlugin {
                 scheduler.scheduleSyncDelayedTask(this, new Runnable() {
                     @Override
                     public void run() {
-                        Bukkit.broadcastMessage("You can use /chest again!");
+                        Bukkit.broadcastMessage(ChatColor.GOLD + "You can use /chest again!");
                         a = 0;
                     }
                 }, 1200);

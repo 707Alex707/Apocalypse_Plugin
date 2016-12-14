@@ -1,13 +1,11 @@
 package group.wilson.apocalypse;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Instrument;
-import org.bukkit.Note;
+import net.minecraft.server.v1_10_R1.EntityZombie;
+import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -22,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import static org.bukkit.Bukkit.getBukkitVersion;
 import static org.bukkit.Bukkit.getServer;
 import static sun.audio.AudioPlayer.player;
 
@@ -75,6 +74,14 @@ public class ListenerMob implements Listener {
 
             }
             if (Killcount == Boss1){
+
+//                Bukkit.broadcastMessage(ChatColor.RED + "A Boss Has Spawned!");
+//                EntityZombie Boss = null;
+//                Boss.setLocation() = deadEntity.getLocation();
+//                Boss.setHealth(50);
+//                ((Zombie) Boss).addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, Integer.MAX_VALUE, 1), true);
+//                ((Zombie) Boss).addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1), true);
+
 
             }
             if (Killcount == Reward2){
