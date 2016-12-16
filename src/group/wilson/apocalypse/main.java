@@ -51,7 +51,7 @@ public class main extends JavaPlugin {
 
         //Passes Death Event
         getServer().getPluginManager().registerEvents(new RespawnEvent(this), this);
-        getServer().getPluginManager().registerEvents(new ZombieSpawnEvent(this), this);
+
 
     }
 
@@ -76,7 +76,7 @@ public class main extends JavaPlugin {
             if ((cmd.getName().equalsIgnoreCase("chest")) && sender instanceof Player && a == 0) {
 
                 Player player = (Player) sender;
-                Bukkit.broadcastMessage(ChatColor.GOLD + "You have recieved a chest!");
+                player.sendMessage(ChatColor.GOLD + "You have recieved a chest!");
                 ItemStack chest = new ItemStack(Material.CHEST, 1);
                 player.getInventory().addItem(chest);
                 a = 1;
@@ -84,7 +84,7 @@ public class main extends JavaPlugin {
                 scheduler.scheduleSyncDelayedTask(this, new Runnable() {
                     @Override
                     public void run() {
-                        Bukkit.broadcastMessage(ChatColor.GOLD + "You can use /chest again!");
+                        player.sendMessage(ChatColor.GOLD + "You can use /chest again!");
                         a = 0;
                     }
                 }, 1200);
