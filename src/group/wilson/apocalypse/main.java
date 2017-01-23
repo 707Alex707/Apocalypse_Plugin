@@ -73,12 +73,18 @@ public class main extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         {
+            //Checks to see if the command contains the text "chest" and if the sender is a player
+            //After the command is used, it checks to see if a == 0 or rather if then command is on a cooldown.
             if ((cmd.getName().equalsIgnoreCase("chest")) && sender instanceof Player && a == 0) {
 
+                //Creates Player entity reference from "sender" of the command
                 Player player = (Player) sender;
+                //Sends the player a message
                 player.sendMessage(ChatColor.GOLD + "You have recieved a chest!");
+                //Gives the player a chest
                 ItemStack chest = new ItemStack(Material.CHEST, 1);
                 player.getInventory().addItem(chest);
+                //sets a to 1 which activates cooldown
                 a = 1;
                 BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
                 scheduler.scheduleSyncDelayedTask(this, new Runnable() {

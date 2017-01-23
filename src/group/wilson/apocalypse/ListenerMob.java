@@ -31,76 +31,70 @@ import static sun.audio.AudioPlayer.player;
  */
 public class ListenerMob implements Listener {
 
-    //Kills
-    public int kills;
-    public Entity BossEntity = null;
-    public int Boss = 75;
-    public int Health = 40;
+    //Reward numbers the method checks for
     public int Reward1 = 50;
     public int Reward2 = 250;
-    public int BossActivate = 0;
-    public int a = 0;
+    //Sets the configGetter in this class
     main configGetter;
 
     //Passes events to Listener class
     public ListenerMob(main plugin) { this.configGetter = plugin; }
 
+    //EventHandler, handles the event received (EvtityDeathEvent)
     @EventHandler
     public void KillZombie(EntityDeathEvent z)
     {
+        //Gets the deadEntity or Entity killed
         Entity deadEntity = z.getEntity();
+        //Gets the killer of the entity
         Entity killer = z.getEntity().getKiller();
+        //Generates a random number between 1 - 10 for the bonus number
         int bonus = (int) (Math.random() * 10);
+        //Checks to see if the entity killed was a zombie or not
         if (((killer instanceof Player)) && ((deadEntity instanceof Zombie)))
         {
+            //Creates Player Entity from killer
             Player player = (Player)killer;
+            //Creates integer Killcount to temporarily assign players kill value to
             int Killcount;
 
+            //checks to see if bonus number is 3, if it is gives player 2 kills instead of 1
             if(bonus == 3){
+                //Gets players current zombies kills from config, if the value doesn't exist, 0 is assigned
                 Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+                //Adds 2 to the value of the players kills
                 this.configGetter.getConfig().set(player.getName() + " Zombie kills", Integer.valueOf(Killcount + 2));
+                //Updates Killcount value in order to display it to player
                 Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+                //Sends player message that they have received a bonus and their current kills
                 player.sendMessage(ChatColor.GOLD + "BONUS! " + ChatColor.GREEN + "+2 kills! "  + Killcount + " kills ");
             }
             else {
+                //Gets players current zombies kills from config, if the value doesn't exist, 0 is assigned
                 Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+                //Adds 2 to the value of the players kills
                 this.configGetter.getConfig().set(player.getName() + " Zombie kills", Integer.valueOf(Killcount + 1));
+                //Updates Killcount value in order to display it to player
                 Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+                //Sends player message that they have received a kill and displays their current kills
                 player.sendMessage(ChatColor.GREEN + "+1 kills! You have " + Killcount + " kills ");
             }
-            //
+            //Checks to see if the Killcount is equal to the Reward1s value
             if (Killcount == Reward1){
 
+                //Tells player they have gotten 50 kills that they are receiving 2 extra hearts
                 player.sendMessage(ChatColor.GOLD + "You have gotten 50 kills! You have recieved 2 extra hearts!");
+                //Sets the players health to 24 or 12 hearts
                 player.setMaxHealth(24);
 
             }
-            if (Killcount == Boss){ BossActivate = 1; }
-
-            if (BossActivate == 1){
-
-                if(a == 0) {
-                    Bukkit.broadcastMessage(ChatColor.RED + "A Boss Has Spawned!");
-                    Location l = player.getLocation();
-                    Entity BossEntity = deadEntity.getWorld().spawnEntity(l, EntityType.ZOMBIE);
-                    BossEntity.setCustomName(ChatColor.RED + "Burick");
-                    BossEntity.playEffect(EntityEffect.WITCH_MAGIC);
-                    BossEntity.playEffect(EntityEffect.FIREWORK_EXPLODE);
-                }
-                a++;
-                while (Health > 0) {
-
-                    if (Health > 0) {
-                        BossEntity.getLastDamageCause().setDamage(0);
-                        Health--;
-                    }
-
-                }
-                if (Health == 0){ BossActivate = 0; }
-            }
+            //Checks to see if the Killcount is equal to the Reward2s value
             if (Killcount == Reward2){
+                //Sets the players health to 26 or 13 hearts
                 player.setMaxHealth(26);
+                //Tells them they have gotten 50 kills and that they are receiving an extra heart and a permanent speed boost
                 player.sendMessage(ChatColor.GOLD + "You have gotten 250 kills! You have recieved a Perm speed boost and another heart!");
+                //Sets the players speed to 2 permanently
                 player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1), true);
             }
         }
