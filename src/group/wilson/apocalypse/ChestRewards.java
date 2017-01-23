@@ -64,7 +64,7 @@ public class ChestRewards implements Listener {
                 player.sendMessage(ChatColor.GOLD + "You opened a" + ChatColor.LIGHT_PURPLE + " LEGENDARY " + ChatColor.GOLD + "loot chest!");
             }
             //---------------------------------------------------------------------------------
-            if (rando < 15 && rando > 3) {
+            else if(rando < 15 && rando > 3) {
                 ItemStack Axe = new ItemStack(Material.DIAMOND_AXE, 1);
                 ItemMeta meta = Axe.getItemMeta();
                 List<String> lores = new ArrayList<String>();
@@ -80,7 +80,7 @@ public class ChestRewards implements Listener {
                 player.sendMessage(ChatColor.GOLD + "You opened a" + ChatColor.AQUA + " RARE " + ChatColor.GOLD + "loot chest!");
             }
             //---------------------------------------------------------------------------------
-            if (rando > 15 && rando < 30) {
+            else if (rando > 15 && rando < 30) {
                 ItemStack IronSword = new ItemStack(Material.IRON_SWORD, 1);
                 ItemMeta meta2 = IronSword.getItemMeta();
                 List<String> lores2 = new ArrayList<String>();
@@ -94,24 +94,24 @@ public class ChestRewards implements Listener {
                 player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
             }
             //---------------------------------------------------------------------------------
-            if (rando > 30 && rando < 60) {
+            else if (rando > 30 && rando < 60) {
                 ItemStack[] items = {new ItemStack(Material.COOKED_FISH, 9), new ItemStack(Material.STONE_SWORD, 1), new ItemStack((Material.LEATHER_CHESTPLATE))};
                 player.getInventory().addItem(items);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
             }
             //---------------------------------------------------------------------------------
-            if (rando > 60 && rando < 90) {
+            else if (rando > 60 && rando < 90) {
                 ItemStack[] items = {new ItemStack(Material.COOKED_BEEF, 5), new ItemStack(Material.LEATHER_BOOTS, 1), new ItemStack((Material.CHAINMAIL_HELMET))};
                 player.getInventory().addItem(items);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
             }
             //---------------------------------------------------------------------------------
-            if (rando > 90 && rando < 120) {
+            else if (rando > 90 && rando < 120) {
                 ItemStack[] items = {new ItemStack(Material.COOKED_CHICKEN, 7), new ItemStack(Material.CHAINMAIL_LEGGINGS, 1), new ItemStack((Material.WOOD_SWORD))};
                 player.getInventory().addItem(items);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
             }
-            if (rando > 120 && rando < 135) {
+            else if (rando > 120 && rando < 135) {
                 ItemStack IronHelm = new ItemStack(Material.IRON_HELMET, 1);
                 ItemMeta meta2 = IronHelm.getItemMeta();
                 List<String> lores2 = new ArrayList<String>();
@@ -125,7 +125,7 @@ public class ChestRewards implements Listener {
                 player.getInventory().addItem(IronHelm);
                 player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
             }
-            if (rando > 135 && rando < 150) {
+            else if (rando > 135 && rando < 150) {
                 ItemStack IronHelm = new ItemStack(Material.IRON_CHESTPLATE, 1);
                 ItemMeta meta2 = IronHelm.getItemMeta();
                 List<String> lores2 = new ArrayList<String>();
@@ -139,7 +139,7 @@ public class ChestRewards implements Listener {
                 player.getInventory().addItem(IronHelm);
                 player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
             }
-            if (rando > 150 && rando < 165) {
+            else if (rando > 150 && rando < 165) {
                 ItemStack IronHelm = new ItemStack(Material.IRON_LEGGINGS, 1);
                 ItemMeta meta2 = IronHelm.getItemMeta();
                 List<String> lores2 = new ArrayList<String>();
@@ -153,7 +153,7 @@ public class ChestRewards implements Listener {
                 player.getInventory().addItem(IronHelm);
                 player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
             }
-            if (rando > 165 && rando < 180) {
+            else if (rando > 165 && rando < 180) {
                 ItemStack IronHelm = new ItemStack(Material.IRON_BOOTS, 1);
                 ItemMeta meta2 = IronHelm.getItemMeta();
                 List<String> lores2 = new ArrayList<String>();
@@ -167,7 +167,7 @@ public class ChestRewards implements Listener {
                 player.getInventory().addItem(IronHelm);
                 player.sendMessage(ChatColor.GOLD + "You opened an " + ChatColor.GREEN + "UNCOMMON" + ChatColor.GOLD + " loot chest!");
             }
-            if (rando > 180 && rando < 210) {
+            else if (rando > 180 && rando < 210) {
                 ItemStack[] items = {new ItemStack(Material.COOKED_FISH, 9), new ItemStack(Material.STONE_SWORD, 1), new ItemStack((Material.CHAINMAIL_CHESTPLATE))};
                 player.getInventory().addItem(items);
                 player.sendMessage(ChatColor.GOLD + "You opened a loot chest!");
