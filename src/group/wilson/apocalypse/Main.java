@@ -18,8 +18,7 @@ import org.bukkit.ChatColor;
  */
 public class Main extends JavaPlugin {
 
-    //Sets the configGetter in this class
-    Main configGetter;
+    //Sets the statsManager to this class from the StatsManager class
     private StatsManager statsManager;
 
     @Override
