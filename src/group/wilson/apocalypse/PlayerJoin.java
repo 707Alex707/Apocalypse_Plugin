@@ -24,7 +24,7 @@ public class PlayerJoin implements Listener {
 
         int kills = statsManager.getKills(player, EntityType.ZOMBIE);
 
-        join.getPlayer().sendMessage(ChatColor.GOLD + "Welcome to the apocolypse server! Remember to use " + ChatColor.AQUA + "/chest" + ChatColor.GOLD + " to get free items!");
+        join.getPlayer().sendMessage(ChatColor.GOLD + "Welcome to the apocalypse server! Remember to use " + ChatColor.AQUA + "/chest" + ChatColor.GOLD + " to get free items!");
         join.getPlayer().sendMessage(ChatColor.GOLD + "You currently have " + ChatColor.AQUA + kills + ChatColor.GOLD + " Kills!");
 
     }
