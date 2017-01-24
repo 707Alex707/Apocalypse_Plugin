@@ -67,14 +67,16 @@ public class Main extends JavaPlugin {
         }
     }
 
+    //Creates integer for cooldown
     int a = 0;
 
-    // This method is called, when somebody uses a command
+    //Creates map for cooldown in /chest command
     private final Map<UUID, Long> cooldown = new HashMap<>();
-
+    // This method is called, when somebody uses a command
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
+        //Checks to see if the command has certain text and if the sender if a player
         if ((cmd.getName().equalsIgnoreCase("chest")) && sender instanceof Player) {
 
             UUID uniqueId = ((Player) sender).getUniqueId();
@@ -99,6 +101,7 @@ public class Main extends JavaPlugin {
             player.getInventory().addItem(chest);
             return true;
         }
+        //Checks to see if the command has certain text and if the sender if a player
         if ((cmd.getName().equalsIgnoreCase("leaderboard")) && sender instanceof Player) {
 
             Map<String,Integer> sorted = statsManager.sort(EntityType.ZOMBIE);
@@ -110,18 +113,24 @@ public class Main extends JavaPlugin {
             for(Map.Entry<String, Integer> stats : sorted.entrySet()) {
                 String playerName = stats.getKey();
                 Integer kills = stats.getValue();
+                //Sends the player the other players kills, sorted
                 sender.sendMessage("" + a++ + " - " + ChatColor.BLUE + playerName + ": " + ChatColor.GOLD + kills + " Kills");
             }
             return true;
         }
+        //Checks to see if the command has certain text and if the sender if a player
         if ((cmd.getName().equalsIgnoreCase("kills")) && sender instanceof Player) {
 
+            //Gets player
             Player player = (Player) sender;
+            //Gets kills
             int kills = statsManager.getKills(player,EntityType.ZOMBIE);
 
+            //sends player their kills
             player.sendMessage(ChatColor.GOLD + "You currently have " + ChatColor.BLUE + kills + ChatColor.GOLD + " Kills");
             return true;
         }
+        //If it returns false, it will return the Usage of the command in plugin.yml
         return false;
     }
 }
