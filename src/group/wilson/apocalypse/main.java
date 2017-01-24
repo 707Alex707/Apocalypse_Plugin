@@ -97,9 +97,30 @@ public class main extends JavaPlugin {
                 return true;
             }
 
+            if ((cmd.getName().equalsIgnoreCase("leaderboard")) && sender instanceof Player){
+
+
+                //Creates Player entity reference from "sender" of the command
+                Player player = (Player) sender;
+                //Sends the player a message
+                player.sendMessage(ChatColor.LIGHT_PURPLE + "Leaderboard");
+
+            }
+
+
+
+
+
             return false;
         }
-
-
     }
+
+
+
+
+
+
+
+
+
 }

@@ -6,3 +6,6 @@ commands:
   chest:
     description: gives the user a chest
     usage: /chest can only be used every minute!
+  leaderboard:
+    description: displays zombie kill leaderboard
+    usage: /leaderboard

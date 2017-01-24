@@ -1,7 +1,7 @@
 package group.wilson.apocalypse;
 
-import com.avaje.ebeaninternal.server.deploy.BeanDescriptor;
-import net.minecraft.server.v1_10_R1.EntityZombie;
+//import com.avaje.ebeaninternal.server.deploy.BeanDescriptor;
+//import net.minecraft.server.v1_10_R1.EntityZombie;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
