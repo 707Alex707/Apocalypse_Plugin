@@ -139,9 +139,27 @@ public class main extends JavaPlugin {
                     String [] data_array = new String[configbyline.size()];
                     configbyline.toArray(data_array);
 
-                    for(int i = 0; i < data_array.length; i++) {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + data_array[i]);
+                    //Holds int and string data
+                    String[] line_split;
+                    String[] name = new String[data_array.length];
+                    int[] kills = new int[data_array.length];
+
+                    for(int i = 1; i < data_array.length; i++) {
+
+                        line_split = data_array[i].split(":");
+
+                        name[i] = line_split[0];
+
+                        //Removes Spaces
+                        line_split[1] = line_split[1].replaceAll("\\s+","");
+
+                        kills[i] = Integer.parseInt(line_split[1]);
+
+                        player.sendMessage(name[i] + kills);
                     }
+
+
+
 
 
 
