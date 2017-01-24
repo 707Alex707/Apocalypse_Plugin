@@ -16,9 +16,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -75,108 +73,46 @@ public class main extends JavaPlugin {
 
     int a = 0;
 
-    // This method is called, when somebody uses the command
+    // This method is called, when somebody uses a command
+    private final Map<UUID, Long> cooldown = new HashMap<>();
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        {
-            //Checks to see if the command contains the text "chest" and if the sender is a player
-            //After the command is used, it checks to see if a == 0 or rather if then command is on a cooldown.
-            if ((cmd.getName().equalsIgnoreCase("chest")) && sender instanceof Player && a == 0) {
 
-                //Creates Player entity reference from "sender" of the command
-                Player player = (Player) sender;
-                //Sends the player a message
-                player.sendMessage(ChatColor.GOLD + "You have recieved a chest!");
-                //Gives the player a chest
-                ItemStack chest = new ItemStack(Material.CHEST, 1);
-                player.getInventory().addItem(chest);
-                //sets a to 1 which activates cooldown
-                a = 1;
-                BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-                scheduler.scheduleSyncDelayedTask(this, new Runnable() {
-                    @Override
-                    public void run() {
-                        player.sendMessage(ChatColor.GOLD + "You can use /chest again!");
-                        a = 0;
-                    }
-                }, 1200);
-                return true;
+        if ((cmd.getName().equalsIgnoreCase("chest")) && sender instanceof Player) {
+
+            UUID uniqueId = ((Player) sender).getUniqueId();
+
+            if (cooldown.containsKey(uniqueId)) {
+                double diff = (System.currentTimeMillis() - cooldown.get(uniqueId)) / 1_000;
+
+                if (diff < 10) {
+                    sender.sendMessage("This is still on cooldown for another " + (10-diff) + " seconds..");
+                    return true;
             }
 
-            if ((cmd.getName().equalsIgnoreCase("leaderboard")) && sender instanceof Player){
-
-
-                //Creates Player entity reference from "sender" of the command
-                Player player = (Player) sender;
-                //Sends the player a message
-                player.sendMessage(ChatColor.LIGHT_PURPLE + "Leaderboard");
-
-
-                //Array to hold config lines
-                ArrayList<String> configbyline = new ArrayList<String>();
-
-                try {
-
-                    // First of all, you need to define file you want to read.
-                    File fileToRead = new File("plugins/Apocalypse/config.yml");
-
-                    // Setup BufferedReader
-                    BufferedReader br = new BufferedReader(new FileReader(fileToRead));
-
-                    //Read line by line
-                    String line = null;
-
-
-                    //
-                    while ((line = br.readLine()) != null) {
-
-                        //Adds each line to array
-                        configbyline.add(line);
-
-                    }
-
-                    //Converts arraylist to string array
-                    String [] data_array = new String[configbyline.size()];
-                    configbyline.toArray(data_array);
-
-                    for(int i = 0; i < data_array.length; i++) {
-                        player.sendMessage(ChatColor.LIGHT_PURPLE + data_array[i]);
-                    }
-
-
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-
-
-
-
-
-
-                return true;
+                cooldown.remove(uniqueId);
             }
 
+            cooldown.put(uniqueId, System.currentTimeMillis());
 
-
-
-
-            return false;
+            Player player = (Player) sender;
+            player.sendMessage(ChatColor.GOLD + "You have recieved a chest!");
+            //Gives the player a chest
+            ItemStack chest = new ItemStack(Material.CHEST, 1);
+            player.getInventory().addItem(chest);
+            return true;
         }
+        if ((cmd.getName().equalsIgnoreCase("leaderboard")) && sender instanceof Player) {
+
+
+            Map<String,Integer> sorted = new HashMap<>();
+
+            sorted.forEach((playername,kills) ->{
+                sender.sendMessage(playername + ": " + kills);
+            });
+
+        }
+        return false;
     }
-
-
-
-
-
-
-
-
-
-
-
 }
