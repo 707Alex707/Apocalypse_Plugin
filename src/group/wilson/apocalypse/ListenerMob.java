@@ -7,27 +7,9 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.FileConfigurationOptions;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import java.awt.TextComponent;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
-import static org.bukkit.Bukkit.getBukkitVersion;
-import static org.bukkit.Bukkit.getServer;
-import static sun.audio.AudioPlayer.player;
 
 /**
  * Created by Alexandre,Spencer on 2016-11-16.
@@ -38,7 +20,7 @@ public class ListenerMob implements Listener {
     public int Reward1 = 50;
     public int Reward2 = 250;
     //Passes events to Listener class
-    public ListenerMob(main plugin,StatsManager statsManager) { this.statsManager = statsManager; }
+    public ListenerMob(Main plugin, StatsManager statsManager) { this.statsManager = statsManager; }
 
 
     //EventHandler, handles the event received (EntityDeathEvent)

@@ -22,9 +22,9 @@ import org.bukkit.scoreboard.Team;
 //public class Scoreboard implements Listener {
 //    private Team team;
 //    private org.bukkit.scoreboard.Scoreboard board;
-//    main configGetter;
+//    Main configGetter;
 //
-//    public Scoreboard(main plugin) {
+//    public Scoreboard(Main plugin) {
 //        this.configGetter = plugin;
 //    }
 //

@@ -1,17 +1,10 @@
 package group.wilson.apocalypse;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,16 +12,14 @@ import java.io.*;
 import java.util.*;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
-import org.bukkit.scheduler.BukkitScheduler;
-import sun.misc.IOUtils;
 
 /**
  * Created by Alexandre,Spencer on 2016-11-15.
  */
-public class main extends JavaPlugin {
+public class Main extends JavaPlugin {
 
     //Sets the configGetter in this class
-    main configGetter;
+    Main configGetter;
     private StatsManager statsManager;
 
     @Override
@@ -52,7 +43,7 @@ public class main extends JavaPlugin {
         //Passes events to Listener class
         getServer().getPluginManager().registerEvents(new ListenerMob(this,statsManager), this);
         getServer().getPluginManager().registerEvents(new ChestRewards(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(this,statsManager), this);
 
         //Passes Death Event
         getServer().getPluginManager().registerEvents(new RespawnEvent(this), this);

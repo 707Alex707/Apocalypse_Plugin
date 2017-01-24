@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
 
 /**
  * Created by s201021621 on 2016-12-13.
@@ -15,7 +14,7 @@ public class PlayerJoin implements Listener {
 
     private StatsManager statsManager;
 
-    public PlayerJoin(main plugin,StatsManager statsManager) { this.statsManager = statsManager; }
+    public PlayerJoin(Main plugin, StatsManager statsManager) { this.statsManager = statsManager; }
 
 
     @EventHandler

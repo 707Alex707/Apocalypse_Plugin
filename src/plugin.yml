@@ -1,7 +1,7 @@
 name: Apocalypse
 version: 1.0
 author: Group_1
-main: group.wilson.apocalypse.main
+main: group.wilson.apocalypse.Main
 commands:
   chest:
     description: gives the user a chest
