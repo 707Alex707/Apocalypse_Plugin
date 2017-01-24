@@ -13,9 +13,6 @@ import org.bukkit.inventory.ItemStack;
  */
 public class RespawnEvent implements Listener {
 
-    //Delceration
-    Main configGetter;
-
     //Passes events to Listener class
     public RespawnEvent(Main plugin)
     {
