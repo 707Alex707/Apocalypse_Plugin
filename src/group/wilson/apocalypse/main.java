@@ -29,27 +29,28 @@ public class main extends JavaPlugin {
 
     //Sets the configGetter in this class
     main configGetter;
-
+    private StatsManager statsManager;
 
     @Override
     public void onEnable() {
+
+        statsManager = new StatsManager(new File(getDataFolder(),"stats.yml"));
+        try {
+            statsManager.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         //Fired when the server enables the plugin
 
-        //Generates config file if does not exist
-        File file = new File(getDataFolder(), "config.yml");
-        if (!file.exists()) {
-            getLogger().info("config.yml not found, creating!");
-            saveDefaultConfig();
-        } else {
-            getLogger().info("config.yml found, loading!");
-        }
+
         //Reads and writes information from plugin yml to console
         PluginDescriptionFile pdfFile = getDescription();
         Logger logger = Logger.getLogger("Minecraft");
         logger.info(pdfFile.getName() + " plugin has been enabled  (Version " + pdfFile.getVersion() + ")");
 
         //Passes events to Listener class
-        getServer().getPluginManager().registerEvents(new ListenerMob(this), this);
+        getServer().getPluginManager().registerEvents(new ListenerMob(this,statsManager), this);
         getServer().getPluginManager().registerEvents(new ChestRewards(this), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
 
@@ -68,7 +69,11 @@ public class main extends JavaPlugin {
         Logger logger = Logger.getLogger("Minecraft");
         logger.info(pdfFile.getName() + " has been disabled  (Version." + pdfFile.getVersion() + ")");
         //Saves kills so that they can be read later
-        saveConfig();
+        try {
+            statsManager.save();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     int a = 0;
@@ -111,7 +116,7 @@ public class main extends JavaPlugin {
             sorted.forEach((playername,kills) ->{
                 sender.sendMessage(playername + ": " + kills);
             });
-
+            return true;
         }
         return false;
     }

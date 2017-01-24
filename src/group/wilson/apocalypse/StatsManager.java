@@ -24,6 +24,13 @@ public class StatsManager {
         this.file = file;
     }
 
+    //Gets the kills for the player
+    public int getKills(Player player, EntityType type){
+
+        return stats.get(player.getName()).get(type);
+
+    }
+
     public void addKill(Player player, EntityType type) {
         String playerName = player.getName();
 
@@ -33,7 +40,7 @@ public class StatsManager {
 
             stats.put(playerName, data);
         } else {
-            Map<EntityType, Integer> data = stats.get(playerName);
+            Map<EntityType, Integer> data = new HashMap<>();
             data.put(type, 1);
 
             stats.put(playerName, data);

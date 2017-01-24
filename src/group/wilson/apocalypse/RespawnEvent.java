@@ -26,7 +26,7 @@ public class RespawnEvent implements Listener {
     //Passes events to Listener class
     public RespawnEvent(main plugin)
     {
-        this.configGetter = plugin;
+
     }
 
     @EventHandler

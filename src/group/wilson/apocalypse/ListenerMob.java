@@ -21,6 +21,9 @@ import java.awt.TextComponent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import static org.bukkit.Bukkit.getBukkitVersion;
 import static org.bukkit.Bukkit.getServer;
@@ -30,17 +33,15 @@ import static sun.audio.AudioPlayer.player;
  * Created by Alexandre,Spencer on 2016-11-16.
  */
 public class ListenerMob implements Listener {
-
+    private StatsManager statsManager;
     //Reward numbers the method checks for
     public int Reward1 = 50;
     public int Reward2 = 250;
-    //Sets the configGetter in this class
-    main configGetter;
-
     //Passes events to Listener class
-    public ListenerMob(main plugin) { this.configGetter = plugin; }
+    public ListenerMob(main plugin,StatsManager statsManager) { this.statsManager = statsManager; }
 
-    //EventHandler, handles the event received (EvtityDeathEvent)
+
+    //EventHandler, handles the event received (EntityDeathEvent)
     @EventHandler
     public void KillZombie(EntityDeathEvent z)
     {
@@ -53,34 +54,29 @@ public class ListenerMob implements Listener {
         //Checks to see if the entity killed was a zombie or not
         if (((killer instanceof Player)) && ((deadEntity instanceof Zombie)))
         {
+            int kills;
             //Creates Player Entity from killer
-            Player player = (Player)killer;
-            //Creates integer Killcount to temporarily assign players kill value to
-            int Killcount;
+            Player player = (Player) killer;
+            if(bonus == 3) {
 
-            //checks to see if bonus number is 3, if it is gives player 2 kills instead of 1
-            if(bonus == 3){
-                //Gets players current zombies kills from config, if the value doesn't exist, 0 is assigned
-                Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
-                //Adds 2 to the value of the players kills
-                this.configGetter.getConfig().set(player.getName() + " Zombie kills", Integer.valueOf(Killcount + 2));
-                //Updates Killcount value in order to display it to player
-                Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
-                //Sends player message that they have received a bonus and their current kills
-                player.sendMessage(ChatColor.GOLD + "BONUS! " + ChatColor.GREEN + "+2 kills! "  + Killcount + " kills ");
+                //Adds kill to player
+                statsManager.addKill(player, EntityType.ZOMBIE);
+                statsManager.addKill(player, EntityType.ZOMBIE);
+
+                kills = statsManager.getKills(player, EntityType.ZOMBIE);
+                //Sends player message that they have received a kill and displays their current kills
+                player.sendMessage(ChatColor.GOLD + "+2 kills! You have " + kills + " kills ");
             }
             else {
-                //Gets players current zombies kills from config, if the value doesn't exist, 0 is assigned
-                Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
-                //Adds 2 to the value of the players kills
-                this.configGetter.getConfig().set(player.getName() + " Zombie kills", Integer.valueOf(Killcount + 1));
-                //Updates Killcount value in order to display it to player
-                Killcount = this.configGetter.getConfig().getInt(player.getName() + " Zombie kills");
+                //Adds kill to player
+                statsManager.addKill(player, EntityType.ZOMBIE);
+
+                kills = statsManager.getKills(player, EntityType.ZOMBIE);
                 //Sends player message that they have received a kill and displays their current kills
-                player.sendMessage(ChatColor.GREEN + "+1 kills! You have " + Killcount + " kills ");
+                player.sendMessage(ChatColor.GREEN + "+1 kills! You have " + kills + " kills ");
             }
             //Checks to see if the Killcount is equal to the Reward1s value
-            if (Killcount == Reward1){
+            if (kills == Reward1){
 
                 //Tells player they have gotten 50 kills that they are receiving 2 extra hearts
                 player.sendMessage(ChatColor.GOLD + "You have gotten 50 kills! You have recieved 2 extra hearts!");
@@ -89,7 +85,7 @@ public class ListenerMob implements Listener {
 
             }
             //Checks to see if the Killcount is equal to the Reward2s value
-            if (Killcount == Reward2){
+            if (kills == Reward2){
                 //Sets the players health to 26 or 13 hearts
                 player.setMaxHealth(26);
                 //Tells them they have gotten 50 kills and that they are receiving an extra heart and a permanent speed boost
