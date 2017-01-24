@@ -20,7 +20,7 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void Join(PlayerJoinEvent join) {
 
-        Player player = (Player)join;
+        Player player = join.getPlayer();
 
         int kills = statsManager.getKills(player, EntityType.ZOMBIE);
 

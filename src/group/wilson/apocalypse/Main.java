@@ -3,6 +3,7 @@ package group.wilson.apocalypse;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -100,12 +101,25 @@ public class Main extends JavaPlugin {
         }
         if ((cmd.getName().equalsIgnoreCase("leaderboard")) && sender instanceof Player) {
 
+            Map<String,Integer> sorted = statsManager.sort(EntityType.ZOMBIE);
+            int a = 1;
 
-            Map<String,Integer> sorted = new HashMap<>();
+            sender.sendMessage(ChatColor.RED + "Leaderboard");
+            sender.sendMessage(ChatColor.RED + "---------------------");
 
-            sorted.forEach((playername,kills) ->{
-                sender.sendMessage(playername + ": " + kills);
-            });
+            for(Map.Entry<String, Integer> stats : sorted.entrySet()) {
+                String playerName = stats.getKey();
+                Integer kills = stats.getValue();
+                sender.sendMessage("" + a++ + " - " + ChatColor.BLUE + playerName + ": " + ChatColor.GOLD + kills + " Kills");
+            }
+            return true;
+        }
+        if ((cmd.getName().equalsIgnoreCase("kills")) && sender instanceof Player) {
+
+            Player player = (Player) sender;
+            int kills = statsManager.getKills(player,EntityType.ZOMBIE);
+
+            player.sendMessage(ChatColor.GOLD + "You currently have " + ChatColor.BLUE + kills + ChatColor.GOLD + " Kills");
             return true;
         }
         return false;

@@ -51,6 +51,7 @@ public class StatsManager {
         Map<String, Integer> raw = new HashMap<>();
 
         stats.forEach((playerName, stats) -> {
+
             raw.put(playerName, stats.getOrDefault(type, 0));
         });
 

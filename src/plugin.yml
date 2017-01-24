@@ -9,3 +9,6 @@ commands:
   leaderboard:
     description: displays zombie kill leaderboard
     usage: /leaderboard
+  kills:
+    description: displays zombie kills
+    usage: /kills
