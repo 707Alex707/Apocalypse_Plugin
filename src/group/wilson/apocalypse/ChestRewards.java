@@ -23,11 +23,8 @@ import java.util.List;
  */
 public class ChestRewards implements Listener {
 
-    main configGetter;
 
-    public ChestRewards(main plugin) {
-        this.configGetter = plugin;
-    }
+    public ChestRewards(main plugin) {  }
 
 
     @EventHandler
