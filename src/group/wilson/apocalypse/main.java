@@ -15,16 +15,22 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitScheduler;
+import sun.misc.IOUtils;
 
 /**
  * Created by Alexandre,Spencer on 2016-11-15.
  */
 public class main extends JavaPlugin {
+
+    //Sets the configGetter in this class
+    main configGetter;
 
 
     @Override
@@ -105,6 +111,54 @@ public class main extends JavaPlugin {
                 //Sends the player a message
                 player.sendMessage(ChatColor.LIGHT_PURPLE + "Leaderboard");
 
+
+                //Array to hold config lines
+                ArrayList<String> configbyline = new ArrayList<String>();
+
+                try {
+
+                    // First of all, you need to define file you want to read.
+                    File fileToRead = new File("plugins/Apocalypse/config.yml");
+
+                    // Setup BufferedReader
+                    BufferedReader br = new BufferedReader(new FileReader(fileToRead));
+
+                    //Read line by line
+                    String line = null;
+
+
+                    //
+                    while ((line = br.readLine()) != null) {
+
+                        //Adds each line to array
+                        configbyline.add(line);
+
+                    }
+
+                    //Converts arraylist to string array
+                    String [] data_array = new String[configbyline.size()];
+                    configbyline.toArray(data_array);
+
+                    for(int i = 0; i < data_array.length; i++) {
+                        player.sendMessage(ChatColor.LIGHT_PURPLE + data_array[i]);
+                    }
+
+
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+
+
+
+
+                return true;
             }
 
 
@@ -114,6 +168,8 @@ public class main extends JavaPlugin {
             return false;
         }
     }
+
+
 
 
 
