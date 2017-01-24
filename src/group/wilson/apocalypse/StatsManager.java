@@ -38,6 +38,7 @@ public class StatsManager {
             return 0;
         }
             return stats.get(player.getName()).get(type);
+        
 
     }
 
